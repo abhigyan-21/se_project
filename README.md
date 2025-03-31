@@ -4,7 +4,7 @@
 
 A modern, animated Python GUI tool for capturing WPA2 handshakes and cracking Wi-Fi passwords using aircrack-ng utilities. Designed for ethical hacking, educational use, and cybersecurity research.
 ________________________________________
-🚀 Features
+**🚀 Features**
 
 ●	Dark-themed PyQt5 interface
 
@@ -21,7 +21,9 @@ ________________________________________
 ●	Built-in Wi-Fi restoration feature
 
 ________________________________________
-📁 Project Structure
+**📁 Project Structure**
+
+
 project_root/
 
 ├── wpa2_gui.py                # Main GUI script
@@ -41,7 +43,7 @@ project_root/
 └── .git/                      # Version control directory
 
 ________________________________________
-🛠️ Requirements
+**🛠️ Requirements**
 
 ●	Python 3.6+
 
@@ -62,13 +64,13 @@ Python Dependencies:
 sudo apt install python3-pyqt5 aircrack-ng network-manager
 
 ________________________________________
-🧪 How to Run
+**🧪 How to Run**
 
 sudo python3 wpa2_gui.py
 
 🔒 Must be run with root privileges for packet injection and monitor mode.
 ________________________________________
-📊 Performance & Testing
+**📊 Performance & Testing**
 
 ●	Scans networks in < 10s
 
@@ -79,7 +81,7 @@ ________________________________________
 ●	Documented test cases in performance_risk_analysis.md
 
 ________________________________________
-⚠️ Legal Disclaimer
+**⚠️ Legal Disclaimer**
 
 This tool is intended for educational and authorized security testing only. Unauthorized use on networks you don’t own or have permission to test is illegal.
 Use responsibly. By using this tool, you agree to these terms.
