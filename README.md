@@ -1,5 +1,4 @@
-﻿# se_project
-[Wi-Fi WPA2 Key Extractor GUI.Readme.docx](https://github.com/user-attachments/files/19533375/Wi-Fi.WPA2.Key.Extractor.GUI.Readme.docx)
+
 Wi-Fi WPA2 Key Extractor GUI
 A modern, animated Python GUI tool for capturing WPA2 handshakes and cracking Wi-Fi passwords using aircrack-ng utilities. Designed for ethical hacking, educational use, and cybersecurity research.
 ________________________________________
