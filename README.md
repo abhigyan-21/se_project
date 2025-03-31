@@ -53,11 +53,11 @@ ________________________________________
 
 ●	Tools:
 
-○	aircrack-ng
+    ○	aircrack-ng
 
-○	nmcli
+    ○	nmcli
 
-○	sudo
+    ○	sudo
 
 Python Dependencies:
 
