@@ -66,7 +66,7 @@ sudo apt install python3-pyqt5 aircrack-ng network-manager
 ________________________________________
 **🧪 How to Run**
 
-sudo python3 wpa2_gui.py
+     sudo python3 wpa2_gui.py
 
 🔒 Must be run with root privileges for packet injection and monitor mode.
 ________________________________________
