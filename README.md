@@ -1,5 +1,5 @@
 
-**<h2>Wi-Fi WPA2 Key Extractor GUI</h2>**
+**<h1>Wi-Fi WPA2 Key Extractor GUI</h1>**
 
 
 A modern, animated Python GUI tool for capturing WPA2 handshakes and cracking Wi-Fi passwords using aircrack-ng utilities. Designed for ethical hacking, educational use, and cybersecurity research.
@@ -26,7 +26,7 @@ ________________________________________
 
 project_root/
 
-├── wpa2_gui.py                                                       # Main GUI script
+├── wpa2_gui.py                                                      <br> # Main GUI script</br>
 
 ├── README.md                                                         # Project readme
 
