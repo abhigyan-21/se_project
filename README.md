@@ -24,23 +24,16 @@ ________________________________________
 **📁 Project Structure**
 
 
-project_root/
+     project_root/
 
-     ├── wpa2_gui.py                                                      #Main GUI script
-
-     ├── README.md                                                        // Project readme
-
-     ├── wpa2_extractor_sdd.md                                            // Software design document
-
-     ├── scmp.md                                                          // Configuration management plan
-
-     ├── performance_risk_analysis.md                                     // Performance testing & risk assessment
-
+     ├── wpa2_gui.py                                  #Main GUI script
+     ├── README.md                                    # Project readme
+     ├── wpa2_extractor_sdd.md                        # Software design document
+     ├── scmp.md                                      # Configuration management plan
+     ├── performance_risk_analysis.md                 # Performance testing & risk assessment
      ├── wordlists/
-
-     │   └── rockyou.txt.gz                                               // Example password wordlist
-
-     └── .git/                                                            // Version control directory
+     │   └── rockyou.txt.gz                           # Example password wordlist
+     └── .git/                                        # Version control directory
 
 ________________________________________
 **🛠️ Requirements**
