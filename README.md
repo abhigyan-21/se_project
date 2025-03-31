@@ -23,17 +23,26 @@ ________________________________________
 ________________________________________
 📁 Project Structure
 project_root/
+
 ├── wpa2_gui.py                # Main GUI script
+
 ├── README.md                  # Project readme
+
 ├── wpa2_extractor_sdd.md     # Software design document
+
 ├── scmp.md                    # Configuration management plan
+
 ├── performance_risk_analysis.md # Performance testing & risk assessment
+
 ├── wordlists/
+
 │   └── rockyou.txt.gz         # Example password wordlist
+
 └── .git/                      # Version control directory
 
 ________________________________________
 🛠️ Requirements
+
 ●	Python 3.6+
 
 ●	Kali Linux or compatible Debian-based distro
@@ -49,15 +58,18 @@ ________________________________________
 ○	sudo
 
 Python Dependencies:
+
 sudo apt install python3-pyqt5 aircrack-ng network-manager
 
 ________________________________________
 🧪 How to Run
+
 sudo python3 wpa2_gui.py
 
 🔒 Must be run with root privileges for packet injection and monitor mode.
 ________________________________________
 📊 Performance & Testing
+
 ●	Scans networks in < 10s
 
 ●	GUI stays responsive using background threads
@@ -68,6 +80,7 @@ ________________________________________
 
 ________________________________________
 ⚠️ Legal Disclaimer
+
 This tool is intended for educational and authorized security testing only. Unauthorized use on networks you don’t own or have permission to test is illegal.
 Use responsibly. By using this tool, you agree to these terms.
 ________________________________________
