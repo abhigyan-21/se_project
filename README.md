@@ -5,6 +5,7 @@
 A modern, animated Python GUI tool for capturing WPA2 handshakes and cracking Wi-Fi passwords using aircrack-ng utilities. Designed for ethical hacking, educational use, and cybersecurity research.
 ________________________________________
 🚀 Features
+
 ●	Dark-themed PyQt5 interface
 
 ●	One-click Wi-Fi scan using nmcli
